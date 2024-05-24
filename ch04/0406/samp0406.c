@@ -34,6 +34,19 @@ void test_average(void) {
     int array[] = {1, 2, 3, 4, 5};
     int size = sizeof(array) / sizeof(array[0]);
     CU_ASSERT_EQUAL(average(array, size), 3);
+    size = -1 ;
+    CU_ASSERT_EQUAL(average(array, size), -1);
+}
+
+
+// Test case 4: Test max_min function
+void test_max_min(void) {
+    int array[] = {1, 2, 3, 4, 5};
+    int size = sizeof(array) / sizeof(array[0]);
+    int max, min;
+    max_min(array, size, &max, &min);
+    CU_ASSERT_EQUAL(max, 5);
+    CU_ASSERT_EQUAL(min, 1);
 }
 
 
@@ -46,6 +59,7 @@ int main() {
     CU_add_test(suite, "Test add function", test_addition);
     CU_add_test(suite, "Test mul function", test_multiply);
     CU_add_test(suite, "Test average function", test_average);
+    CU_add_test(suite, "Test min/max function", test_max_min);
 
     CU_basic_set_mode(CU_BRM_VERBOSE);
     CU_basic_run_tests();
