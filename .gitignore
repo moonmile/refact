@@ -103,6 +103,7 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
+*.o
 
 # Chutzpah Test files
 _Chutzpah*
@@ -491,3 +492,11 @@ ch04/0404/samp0404
 ch04/0405/samp0405
 ch04/0406/main
 ch04/0406/samp0406
+ch04/0407/main
+ch04/0408/main
+ch04/0409/main
+ch04/0407/samp0407
+ch04/0408/samp0408
+ch04/0409/samp0409
+ch03/0306/samp0306
+ch03/0306/test_main
