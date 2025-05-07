@@ -9,8 +9,6 @@ void sleep_init( void )
     time_t t = time( NULL ) ;
     srand( t ) ;
 }
-
-
 int sleep_seconds( int seconds ) 
 {
     sleep( seconds ) ;

@@ -9,5 +9,6 @@ int ring_buffer_shift();
 int ring_buffer_size() ;
 void ring_buffer_print() ;
 void ring_buffer_clear() ;
+int ring_buffer_seek();
 
 #endif

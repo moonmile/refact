@@ -32,6 +32,10 @@ int ring_buffer_pop()
     ring_buffer[ ring_buffer_index ] = 0 ;
     return value ;
 }
+int ring_buffer_seek() 
+{
+    return ring_buffer[(ring_buffer_index - 1)% 10 ] ;
+}
 
 int ring_buffer_shift()
 {

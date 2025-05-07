@@ -64,12 +64,15 @@ void test_sleep_random_range(void) {
 void test_sleep_longtime(void) {
     sleep_init() ;
 
-    time_t t_start = time( NULL ) ;
-    sleep_random_range( 5, 10 ) ;
-    time_t t_end = time( NULL ) ;
-    double elapsed = difftime( t_end, t_start ) ;
-    printf( "Elapsed time: %.2f seconds\n", elapsed ) ;
-    CU_ASSERT_TRUE( elapsed >= 5.0 ) ;
+    // 10回繰り返す
+    for ( int i = 0 ; i < 10 ; i++ ) {
+        time_t t_start = time( NULL ) ;
+        sleep_random_range( 5, 10 ) ;
+        time_t t_end = time( NULL ) ;
+        double elapsed = difftime( t_end, t_start ) ;
+        printf( "Elapsed time: %.2f seconds\n", elapsed ) ;
+        CU_ASSERT( elapsed >= 7.0 ) ;
+    }
 }
 
 int main() 

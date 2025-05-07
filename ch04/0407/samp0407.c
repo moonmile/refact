@@ -1,6 +1,8 @@
 #include <CUnit/CUnit.h>
 #include <CUnit/Basic.h>
 
+#include <stdio.h>
+#include <stdlib.h>
 #include "ring_buffer.h"
 
 // Test suite initialization function
@@ -138,6 +140,55 @@ void test_ring_buffer_shift_overflow(void)
     CU_ASSERT_EQUAL(ring_buffer_get(0), 0);
 }
 
+/**
+ * 内部状態の確認
+ */
+void test_ring_buffer_internal_state(void) {
+    
+    ring_buffer_init() ;
+    ring_buffer_push( 1 ) ;
+    ring_buffer_push( 2 ) ;
+    ring_buffer_push( 3 ) ;
+
+    // プロセスA が pop する
+    int n = ring_buffer_pop() ;
+    // プロセスB が push する
+    ring_buffer_push( 100 ) ;   // ★
+    // プロセスA がもう一度 push する
+    ring_buffer_push( n ) ;
+
+    // プロセスA が値を確認する
+    CU_ASSERT_EQUAL(ring_buffer_seek(), n);
+    // プロセスB が値を確認する
+    CU_ASSERT_EQUAL(ring_buffer_seek(), 100);   // ★
+
+    ring_buffer_clear() ;
+}
+
+/**
+ * 異常系のテスト
+ */
+void test_ring_buffer_error(void) 
+{
+    ring_buffer_init() ;
+    ring_buffer_push( 1 ) ;
+    ring_buffer_push( 2 ) ;
+    ring_buffer_push( 3 ) ;
+
+    // プロセスA が seek する
+    int n = ring_buffer_seek() ;
+    CU_ASSERT_EQUAL(ring_buffer_seek(), n);
+    // プロセスB が pop する
+    ring_buffer_pop() ;   // ★
+    ring_buffer_pop() ;   // 
+    ring_buffer_pop() ;   // 
+
+    // プロセスA が値を確認する
+    CU_ASSERT_EQUAL(ring_buffer_seek(), n);
+
+    ring_buffer_clear() ;
+}
+
 
 int main() 
 {
@@ -151,6 +202,8 @@ int main()
     CU_add_test(suite, "Test ring buffer pop overflow", test_ring_buffer_pop_overflow);
     CU_add_test(suite, "Test ring buffer shift", test_ring_buffer_shift);
     CU_add_test(suite, "Test ring buffer shift overflow", test_ring_buffer_shift_overflow);
+    // CU_add_test(suite, "Test ring buffer internal state", test_ring_buffer_internal_state);
+    CU_add_test(suite, "Test ring buffer error", test_ring_buffer_error);
 
     CU_basic_set_mode(CU_BRM_VERBOSE);
     CU_basic_run_tests();

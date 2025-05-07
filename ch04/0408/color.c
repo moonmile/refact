@@ -1,3 +1,5 @@
+#include "color.h"
+
 static int status_red = 0 ;
 static int status_green = 0 ;
 static int status_blue = 0 ;
