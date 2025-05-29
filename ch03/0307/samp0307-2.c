@@ -59,8 +59,8 @@ static void test_make_qrcode_url_valid() {
         (const char *)setting_data.qrEncyptKey,
         t
     );
-
-    CU_ASSERT_STRING_EQUAL(url, "https://simple.com/qrcode?msWBgyUw2s99TZP1vdX3j6BMbnvB57WHpfn5eIM7w");
+    // 実際は https://simple.com/qrcode?msWBgyUw2s99TZP1vdX3j6BMbnvB57WHpfn5eIM7w7w=
+    CU_ASSERT_STRING_EQUAL(url, "https://simple.com/qrcode?XXXXXXXXXXXXXXXXXXXXXXXX");
 }
 
 static void test_make_qrcode_url_invalid_key() {
@@ -87,7 +87,6 @@ static void test_make_qrcode_url_invalid_url() {
     strcpy((char*)setting_data.qrEncyptKey, "560DB2A64C2BBE61FBE6810AFCB25230");
     strcpy((char*)setting_data.qrUrl, ""); // Invalid URL
     time_t t = str_to_time_t("2024/12/31 23:59:00");
-
     const char *url = make_qrcocde_url(
         1,
         (const char *)setting_data.name,
@@ -95,7 +94,6 @@ static void test_make_qrcode_url_invalid_url() {
         (const char *)setting_data.qrEncyptKey,
         t
     );
-
     CU_ASSERT_STRING_EQUAL(url, "error1");
 }
 

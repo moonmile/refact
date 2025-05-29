@@ -10,4 +10,6 @@ samp0401: samp0401.c
 clean:
 	rm -f *.o
 	rm -f samp0401
+test: samp0401
+	./samp0401
 	

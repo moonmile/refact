@@ -18,7 +18,7 @@ clean:
 	rm -f main
 	rm -f samp0406
 
-test:
+test: samp0406
 	./samp0406
 
 	
