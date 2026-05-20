@@ -6,7 +6,18 @@
  * 加算をする関数
  */
 int add(int a, int b) {
-    return a + b;
+
+    int sum = a + b;
+    if (sum < 0) {
+        // マイナスにはならない
+        return 0;
+    }
+    if (sum > 100) {
+        // 100は超えない
+        return 100;
+    }
+    // それ以外はそのまま返す
+    return sum;
 }
 
 /**
@@ -15,6 +26,11 @@ int add(int a, int b) {
 int multiply(int a, int b) {
     return 0 ;
 }
+/*
+int multiply(int a, int b) {
+    return a * b ;
+}
+*/
 
 /**
  * 除算をする関数
@@ -46,7 +62,7 @@ void test_addition(void) {
     // マイナスにはならない
     CU_ASSERT_EQUAL(add(-5, -6), 0);
     // 100は超えない
-    CU_ASSERT_EQUAL(add(15, 6), 100);
+    CU_ASSERT_EQUAL(add(80, 50), 100);
 }
 
 // Test case 2: Test mul function

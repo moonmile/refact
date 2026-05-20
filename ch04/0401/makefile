@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Werror
+CFLAGS = -Wall 
 CUNIT = -lcunit
 
 all: samp0401

@@ -18,9 +18,11 @@ int mul(int a, int b) {
  * 配列の平均値を求める関数
  */
 int average(int array[], int size) {
+    /*
     if (size <= 0) {
         return -1;
     }
+    */
     int sum = 0;
     for (int i = 0; i < size; i++) {
         sum += array[i];
@@ -31,6 +33,7 @@ int average(int array[], int size) {
 /**
  * 配列の最大値と最小値を求める関数
  */
+/*
 int max_min(int array[], int size, int *max, int *min) {
     if (size <= 0) {
         return -1;
@@ -47,4 +50,4 @@ int max_min(int array[], int size, int *max, int *min) {
     }
     return 0;
 }
-
+*/

@@ -70,7 +70,7 @@ void test_color_or(void) {
     CU_ASSERT_EQUAL(get_status_magenta(), 0);
 
     set_blue( 0 ) ;
-    CU_ASSERT_EQUAL(get_status_green_or_blue(), 0);
+    CU_ASSERT_EQUAL(get_status_green_or_blue(), 1);
     CU_ASSERT_EQUAL(get_status_cyan(), 0);
     CU_ASSERT_EQUAL(get_status_magenta(), 0);
     CU_ASSERT_EQUAL(get_status_black(), 0);

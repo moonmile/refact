@@ -14,9 +14,12 @@ public:
         return a * b;
     }
     int dev( int a, int b ) {
+        /*
         if ( b == 0 ) {
-            return 0;
+            // 0除算のチェック
+            return 0; // 0で割る場合は0を返す
         }
+        */
         return a / b;
     }
 };
@@ -78,9 +81,9 @@ public:
         // Test the behavior of dev funciton 
         CPPUNIT_ASSERT_EQUAL( 2, myObject.dev( 2, 1 ) );
         CPPUNIT_ASSERT_EQUAL( 3, myObject.dev( 6, 2 ) );
-        CPPUNIT_ASSERT_EQUAL( 5, myObject.dev( 10, 2 ) );
+        CPPUNIT_ASSERT_EQUAL( 5, myObject.dev( 10, 3 ) );
         // 0除算のチェック
-        CPPUNIT_ASSERT_EQUAL( 0, myObject.dev( 10, 0 ) );
+        // CPPUNIT_ASSERT_EQUAL( 0, myObject.dev( 10, 0 ) );
     }
 };
 

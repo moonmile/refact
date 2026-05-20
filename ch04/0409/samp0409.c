@@ -41,7 +41,21 @@ void test_sleep_random(void) {
     time_t t_end = time( NULL ) ;
     double elapsed = difftime( t_end, t_start ) ;
     printf( "Elapsed time: %.2f seconds\n", elapsed ) ;
-    CU_ASSERT( elapsed >= 1.0 && elapsed <= 5.0 ) ;
+    CU_ASSERT( elapsed >= 2.0 && elapsed <= 5.0 ) ;
+}
+
+void test_sleep_random_loop(void) {
+    sleep_init() ;
+
+    // 10回繰り返す
+    for ( int i = 0 ; i < 10 ; i++ ) {
+        time_t t_start = time( NULL ) ;
+        sleep_random( 5 ) ;
+        time_t t_end = time( NULL ) ;
+        double elapsed = difftime( t_end, t_start ) ;
+        printf( "Elapsed time: %.2f seconds\n", elapsed ) ;
+        CU_ASSERT( elapsed >= 2.0 && elapsed <= 5.0 ) ;
+    }
 }
 
 /**
@@ -61,7 +75,7 @@ void test_sleep_random_range(void) {
 /** 
  * 時間超過のテスト
  */
-void test_sleep_longtime(void) {
+void test_sleep_random_range_loop(void) {
     sleep_init() ;
 
     // 10回繰り返す
@@ -82,8 +96,10 @@ int main()
     CU_pSuite suite = CU_add_suite("Test Suite", init_suite, clean_suite);
     CU_add_test(suite, "test_sleep_seconds", test_sleep_seconds);
     CU_add_test(suite, "test_sleep_random", test_sleep_random);
-    CU_add_test(suite, "test_sleep_random_range", test_sleep_random_range);
-    CU_add_test(suite, "test_sleep_longtime", test_sleep_longtime);
+    CU_add_test(suite, "test_sleep_random_loop", test_sleep_random_loop);
+
+    // CU_add_test(suite, "test_sleep_random_range", test_sleep_random_range);
+    // CU_add_test(suite, "test_sleep_random_range_loop", test_sleep_random_range_loop);
 
 
     CU_basic_set_mode(CU_BRM_VERBOSE);

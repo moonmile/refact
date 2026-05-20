@@ -6,7 +6,7 @@
  * 配列の平均値を計算する関数
  * 変数名を変更する前
  */
-double calculateAverage0(int a[], int l) {
+double calculateAverage(int a[], int l) {
     int x = 0;
     for (int i = 0; i < l; i++) {
         x += a[i];
@@ -19,6 +19,7 @@ double calculateAverage0(int a[], int l) {
  * 配列の平均値を計算する関数
  * 変数名を変更した後
  */
+/*
 double calculateAverage(int arr[], int size) {
     int sum = 0;
     for (int i = 0; i < size; i++) {
@@ -26,6 +27,7 @@ double calculateAverage(int arr[], int size) {
     }
     return (double)sum / size;
 }
+*/
 
 // Test suite initialization function
 int init_suite(void) {
@@ -43,7 +45,7 @@ void test_average(void) {
 
     int numbers[] = {1, 2, 3, 4, 5};
     int size = 5 ;
-    double average = calculateAverage0(numbers, size);
+    double average = calculateAverage(numbers, size);
     CU_ASSERT_EQUAL(average, 3.0);
 }
 

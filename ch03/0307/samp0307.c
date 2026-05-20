@@ -132,6 +132,13 @@ int url_encode( const char *src, int src_len, char *dst, int dst_len )
 char qrcocde_url[128];
 
 
+/// @brief QRコードのURLを生成する関数
+/// @param type QRコードのタイプ
+/// @param device_id デバイスID
+/// @param url QRコードのベースURL
+/// @param encypt_key 暗号化キー（16進数文字列）
+/// @param t タイムスタンプ
+
 const char *make_qrcocde_url( 
     int type,
     const char *device_id,

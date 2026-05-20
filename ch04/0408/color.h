@@ -15,5 +15,5 @@ int get_status_cyan( void );
 int get_status_magenta( void );
 int get_status_black( void );
 int get_status_white( void );
-int color_clear( void );
+void color_clear( void );
 #endif
