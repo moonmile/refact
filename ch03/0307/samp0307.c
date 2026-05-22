@@ -129,7 +129,7 @@ int url_encode( const char *src, int src_len, char *dst, int dst_len )
 }
 
 /// 
-char qrcocde_url[128];
+char qrcode_url[128];
 
 
 /// @brief QRコードのURLを生成する関数
@@ -139,14 +139,14 @@ char qrcocde_url[128];
 /// @param encypt_key 暗号化キー（16進数文字列）
 /// @param t タイムスタンプ
 
-const char *make_qrcocde_url( 
+const char *make_qrcode_url( 
     int type,
     const char *device_id,
     const char *url,
     const char *encypt_key,
     time_t t ) 
 {
-    memset( qrcocde_url, 0x0, sizeof(qrcocde_url) );
+    memset( qrcode_url, 0x0, sizeof(qrcode_url) );
 
     // 共通鍵を16進数からバイト配列に変換
     uint8_t key[16] = {0};
@@ -188,14 +188,14 @@ const char *make_qrcocde_url(
     // URLエンコード
     url_encode( base64, base64_len, enc_base64, sizeof(enc_base64) );
 
-    memset( qrcocde_url, 0x0, sizeof(qrcocde_url) );
-    strcat( qrcocde_url, url );
-    strcat( qrcocde_url, enc_base64 );
+    memset( qrcode_url, 0x0, sizeof(qrcode_url) );
+    strcat( qrcode_url, url );
+    strcat( qrcode_url, enc_base64 );
 
     free(base64);
     free(enc_base64);
  
-    return qrcocde_url;
+    return qrcode_url;
 }
 
 
@@ -237,7 +237,7 @@ static void test_qrcode_url() {
     strcpy((char*)setting_data.qrUrl, "https://simple.com/qrcode?");
     time_t t = str_to_time_t("2024/12/31 23:59:00");    // 202412312359
 
-    const char *url = make_qrcocde_url(
+    const char *url = make_qrcode_url(
         1, 
         (const char *)setting_data.name, 
         (const char *)setting_data.qrUrl,

@@ -28,7 +28,7 @@ extern flash_data_settings_t setting_data ;
 
 
 extern time_t str_to_time_t( const char *fmt );
-extern const char *make_qrcocde_url( 
+extern const char *make_qrcode_url( 
     int type,
     const char *device_id,
     const char *url,
@@ -52,7 +52,7 @@ static void test_make_qrcode_url_valid() {
     strcpy((char*)setting_data.qrUrl, "https://simple.com/qrcode?");
     time_t t = str_to_time_t("2024/12/31 23:59:00");
 
-    const char *url = make_qrcocde_url(
+    const char *url = make_qrcode_url(
         1,
         (const char *)setting_data.name,
         (const char *)setting_data.qrUrl,
@@ -70,7 +70,7 @@ static void test_make_qrcode_url_invalid_key() {
     strcpy((char*)setting_data.qrUrl, "https://simple.com/qrcode?");
     time_t t = str_to_time_t("2024/12/31 23:59:00");
 
-    const char *url = make_qrcocde_url(
+    const char *url = make_qrcode_url(
         1,
         (const char *)setting_data.name,
         (const char *)setting_data.qrUrl,
@@ -87,7 +87,7 @@ static void test_make_qrcode_url_invalid_url() {
     strcpy((char*)setting_data.qrEncyptKey, "560DB2A64C2BBE61FBE6810AFCB25230");
     strcpy((char*)setting_data.qrUrl, ""); // Invalid URL
     time_t t = str_to_time_t("2024/12/31 23:59:00");
-    const char *url = make_qrcocde_url(
+    const char *url = make_qrcode_url(
         1,
         (const char *)setting_data.name,
         (const char *)setting_data.qrUrl,
@@ -98,7 +98,7 @@ static void test_make_qrcode_url_invalid_url() {
 }
 
 void make_suite_test2(void) {
-    CU_pSuite suite = CU_add_suite("Test Suite for make_qrcocde_url", init_suite, clean_suite);
+    CU_pSuite suite = CU_add_suite("Test Suite for make_qrcode_url", init_suite, clean_suite);
     CU_add_test(suite, "Test valid QR code URL generation", test_make_qrcode_url_valid);
     CU_add_test(suite, "Test invalid encryption key", test_make_qrcode_url_invalid_key);
     CU_add_test(suite, "Test invalid URL", test_make_qrcode_url_invalid_url);
